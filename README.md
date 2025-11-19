@@ -1,7 +1,14 @@
 # Lanchonete App
 
-Aplicação em Java para gerenciamento de uma lanchonete, incluindo controle de funcionários, cargos, produtos e pedidos.
+<!-- Badges -->
+![Java](https://img.shields.io/badge/Java-23-orange?style=flat-square)
+![Architecture](https://img.shields.io/badge/Clean%20Architecture-✔-brightgreen?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/andrelamego/lanchonete-app?color=blue&style=flat-square)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/andrelamego/lanchonete-app?color=yellow&style=flat-square)
+---
 
+Aplicação em Java para gerenciamento de uma lanchonete, incluindo controle de funcionários, cargos, produtos e pedidos.
 
 ## Índice
 
@@ -50,6 +57,19 @@ Estrutura contruída seguindo os princípios da Clean Architecture:
 - `adapters/repository`: classes para conexão/comunicação com o banco de dados.
 - `adapters/ui`: controladores para comunicação da interface com o sistema.
 - `resources`: arquivos de configuração, scripts, etc.
+
+## Diagramas
+
+Abaixo estão os principais diagramas que representam a arquitetura e o fluxo da aplicação:
+
+### 1. Diagrama de Pacotes
+![Diagrama de Pacotes](./docs/diagrams/pkg-diagram.png)
+
+### 2. Diagrama de Classes
+![Diagrama de Classes](./docs/diagrams/class-diagram.png)
+
+### 3. Fluxo Geral do Sistema
+![Fluxo do Sistema](./docs/diagrams/fluxo-sistema.png)
 
 ## Pré-requisitos
 
