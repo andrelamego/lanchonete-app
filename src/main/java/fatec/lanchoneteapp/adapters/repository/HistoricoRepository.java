@@ -1,32 +1,34 @@
 package fatec.lanchoneteapp.adapters.repository;
 
-import fatec.lanchoneteapp.application.repository.StrategyRepository;
+import fatec.lanchoneteapp.application.repository.RepositoryStrategy;
+import fatec.lanchoneteapp.domain.entity.Historico;
 
 import java.util.List;
 
-public class HistoricoRepository implements StrategyRepository {
+public class HistoricoRepository implements RepositoryStrategy<Historico> {
+
     @Override
-    public void salvar(Object entidade) {
+    public void salvar(Historico entidade) {
 
     }
 
     @Override
-    public void atualizar(Object entidade) {
+    public void atualizar(Historico entidade) {
 
     }
 
     @Override
-    public void excluir(Object entidade) {
+    public void excluir(Historico entidade) {
 
     }
 
     @Override
-    public Object buscar(Object entidade) {
+    public Historico buscar(Historico entidade) {
         return null;
     }
 
     @Override
-    public List listar() {
+    public List<Historico> listar() {
         return List.of();
     }
 }

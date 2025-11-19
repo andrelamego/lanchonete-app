@@ -1,32 +1,34 @@
 package fatec.lanchoneteapp.adapters.repository;
 
-import fatec.lanchoneteapp.application.repository.StrategyRepository;
+import fatec.lanchoneteapp.application.repository.RepositoryStrategy;
+import fatec.lanchoneteapp.domain.entity.Produto;
 
 import java.util.List;
 
-public class ProdutoRepository implements StrategyRepository {
+public class ProdutoRepository implements RepositoryStrategy<Produto> {
+
     @Override
-    public void salvar(Object entidade) {
+    public void salvar(Produto entidade) {
 
     }
 
     @Override
-    public void atualizar(Object entidade) {
+    public void atualizar(Produto entidade) {
 
     }
 
     @Override
-    public void excluir(Object entidade) {
+    public void excluir(Produto entidade) {
 
     }
 
     @Override
-    public Object buscar(Object entidade) {
+    public Produto buscar(Produto entidade) {
         return null;
     }
 
     @Override
-    public List listar() {
+    public List<Produto> listar() {
         return List.of();
     }
 }
