@@ -1,42 +1,40 @@
 package fatec.lanchoneteapp.domain.entity;
 
 public class Produto {
-    private int idProd;
+    private int id;
     private String nome;
-    private long qntdEstoq;
-    private long valorUn;
+    private int qntdEstoq;
+    private double valorUn;
+    private Categoria categoria;
 
-    public int getIdProd() {
-        return idProd;
+    public int getId() {
+        return id;
     }
-
     public String getNome() {
         return nome;
     }
-
-    public long getQntdEstoq() {
+    public int getQntdEstoq() {
         return qntdEstoq;
     }
-
-    public long getValorUn() {
+    public double getValorUn() {
         return valorUn;
     }
-
-    public void setIdProd(int idProd) {
-        this.idProd = idProd;
+    public Categoria getCategoria() {
+        return categoria;
     }
-
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public void setQntdEstoq(long qntdEstoq) {
+    public void setQntdEstoq(int qntdEstoq) {
         this.qntdEstoq = qntdEstoq;
     }
-
-    public void setValorUn(long valorUn) {
+    public void setValorUn(double valorUn) {
         this.valorUn = valorUn;
     }
-
-
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

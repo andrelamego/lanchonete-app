@@ -71,6 +71,9 @@ CREATE TABLE Fornecedor(
 CREATE TABLE Item_Pedido(
 	Num_Pedido INT NOT NULL,
 	ID_Produto INT NOT NULL,
+	Qtd INT NOT NULL,
+	ValorUnit DECIMAL(7,2) NOT NULL,
+	ValorTotalItem DECIMAL(7,2) NOT NULL
 	PRIMARY KEY(Num_Pedido, ID_Produto),
 	FOREIGN KEY(Num_Pedido) REFERENCES Pedido(Num_Pedido),
 	FOREIGN KEY(ID_Produto) REFERENCES Produto(ID)

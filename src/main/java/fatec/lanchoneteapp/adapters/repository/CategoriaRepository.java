@@ -1,8 +1,5 @@
 package fatec.lanchoneteapp.adapters.repository;
 
-import fatec.lanchoneteapp.application.repository.RepositoryNoReturn;
-import fatec.lanchoneteapp.domain.entity.Cargo;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,39 +7,40 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CargoRepository implements RepositoryNoReturn<Cargo> {
+import fatec.lanchoneteapp.application.repository.RepositoryNoReturn;
+import fatec.lanchoneteapp.domain.entity.Categoria;
+
+public class CategoriaRepository implements RepositoryNoReturn<Categoria> {
     private Connection connection;
 
-    public CargoRepository(Connection connection){
+    public CategoriaRepository(Connection connection){
         this.connection = connection; 
     }
 
     @Override
-    public void salvar(Cargo entidade) throws SQLException{
-        String sql = "INSERT INTO Cargo(?, ?, ?)";
+    public void salvar(Categoria entidade) throws SQLException {
+        String sql = "INSERT INTO Categoria(?, ?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, entidade.getNome());
-        ps.setDouble(2, entidade.getSalario());
-        ps.setString(3, entidade.getDescricao());
+        ps.setString(2, entidade.getDescricao());
         ps.execute();
         ps.close();
     }
 
     @Override
-    public void atualizar(Cargo entidade) throws SQLException{
-        String sql = "UPDATE Cargo SET Nome = ?, Salario = ?, Descricao = ? WHERE ID = ?";
+    public void atualizar(Categoria entidade) throws SQLException {
+        String sql = "UPDATE Categoria SET Nome = ?, Descricao = ? WHERE ID = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, entidade.getNome());
-        ps.setDouble(2, entidade.getSalario());
-        ps.setString(3, entidade.getDescricao());
-        ps.setInt(4, entidade.getId());
+        ps.setString(2, entidade.getDescricao());
+        ps.setInt(3, entidade.getId());
         ps.execute();
         ps.close();
     }
 
     @Override
-    public void excluir(Cargo entidade) throws SQLException{
-        String sql = "DELETE FROM Cargo WHERE ID = ?";
+    public void excluir(Categoria entidade) throws SQLException {
+        String sql = "DELETE FROM Categoria WHERE ID = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, entidade.getId());
         ps.execute();
@@ -50,8 +48,8 @@ public class CargoRepository implements RepositoryNoReturn<Cargo> {
     }
 
     @Override
-    public Cargo buscarPorID(Cargo entidade) throws SQLException{
-        String sql = "SELECT ID, Nome, Salario, Descricao FROM Cargo WHERE ID = ?";
+    public Categoria buscarPorID(Categoria entidade) throws SQLException {
+        String sql = "SELECT ID, Nome, Descricao FROM Categoria WHERE ID = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, entidade.getId());
 
@@ -61,14 +59,13 @@ public class CargoRepository implements RepositoryNoReturn<Cargo> {
         if(rs.next()){
             entidade.setId(rs.getInt("ID"));
             entidade.setNome(rs.getString("Nome"));
-            entidade.setSalario(rs.getDouble("Salario"));
             entidade.setDescricao(rs.getString("Descricao"));
             
             cont++;
         }
 
         if(cont == 0){
-            entidade = new Cargo();
+            entidade = new Categoria();
         }
 
         rs.close();
@@ -77,20 +74,19 @@ public class CargoRepository implements RepositoryNoReturn<Cargo> {
     }
 
     @Override
-    public List<Cargo> listar() throws SQLException{
-        String sql = "SELECT ID, Nome, Salario, Descricao FROM Cargo";
+    public List<Categoria> listar() throws SQLException {
+        String sql = "SELECT ID, Nome, Descricao FROM Categoria";
         PreparedStatement ps = connection.prepareStatement(sql);
 
-        List<Cargo> entidades = new ArrayList<>();
+        List<Categoria> entidades = new ArrayList<>();
         ResultSet rs = ps.executeQuery();
 
         while(rs.next()){
-            Cargo entidade = new Cargo();
+            Categoria entidade = new Categoria();
             entidade.setId(rs.getInt("ID"));
             entidade.setNome(rs.getString("Nome"));
-            entidade.setSalario(rs.getDouble("Salario"));
             entidade.setDescricao(rs.getString("Descricao"));
-
+            
             entidades.add(entidade);
         }
 
@@ -98,4 +94,5 @@ public class CargoRepository implements RepositoryNoReturn<Cargo> {
         ps.close();
         return entidades;
     }
+
 }

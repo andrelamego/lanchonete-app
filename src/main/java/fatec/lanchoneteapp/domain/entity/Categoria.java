@@ -1,34 +1,26 @@
 package fatec.lanchoneteapp.domain.entity;
 
-public class Cargo {
+public class Categoria {
     private int id;
     private String nome;
-    private double salario;
     private String descricao;
 
     public int getId() {
         return id;
     }
-    public String getDescricao() {
-        return descricao;
-    }
     public String getNome() {
         return nome;
     }
-    public double getSalario() {
-        return salario;
+    public String getDescricao() {
+        return descricao;
     }
     public void setId(int id) {
         this.id = id;
     }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setSalario(double salario) {
-        this.salario = salario;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
-
 }
