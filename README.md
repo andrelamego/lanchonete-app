@@ -96,6 +96,12 @@ Abaixo estão os principais diagramas que representam a arquitetura e o fluxo da
 ### 3. Fluxo Geral do Sistema
 ![Fluxo do Sistema](./docs/diagrams/fluxo-sistema.png)
 
+### 4. Diagrama de Entidade-Relacionamento
+![Diagrama de Entidade-Relacionamento](./docs/diagrams/DER.png)
+
+### 5. Diagrama de Caso de Uso
+![Diagrama de Caso de Uso](./docs/diagrams/caso-de-uso.png)
+
 ## Pré-requisitos
 
 - **Java 23** instalado e configurado (`JAVA_HOME` e PATH)
