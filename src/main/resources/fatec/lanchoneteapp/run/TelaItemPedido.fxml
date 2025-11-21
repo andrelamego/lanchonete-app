@@ -14,7 +14,7 @@
             minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="fatec.lanchoneteapp.adapters.ui.ProdutoController">
+            fx:controller="fatec.lanchoneteapp.adapters.ui.ItemPedidoController">
 
     <center>
         <GridPane BorderPane.alignment="CENTER">
@@ -22,9 +22,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
-
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -32,19 +30,15 @@
             </rowConstraints>
 
             <children>
-                <Label text="Nome" />
-                <Label text="Estoque" GridPane.rowIndex="1" />
-                <Label text="Valor Unitário" GridPane.rowIndex="2" />
-                <Label text="Categoria" GridPane.rowIndex="3" />
+                <Label text="Pedido" />
+                <Label text="Produto" GridPane.rowIndex="1" />
+                <Label text="Quantidade" GridPane.rowIndex="2" />
+                <Label text="Valor Unitário" GridPane.rowIndex="3" />
 
-                <TextField fx:id="tfNomeProduto" promptText="Nome" GridPane.columnIndex="1" />
-                <TextField fx:id="tfEstoqueProduto" promptText="Quantidade em Estoque"
-                           GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="tfValorProduto" promptText="Valor Unitário"
-                           GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-                <ComboBox fx:id="cbCategoriaProduto" promptText="Selecione"
-                          GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <ComboBox fx:id="cbPedido" promptText="Selecione" GridPane.columnIndex="1" />
+                <ComboBox fx:id="cbProduto" promptText="Selecione" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="tfQuantidade" promptText="Quantidade" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="tfValorUnitario" promptText="Valor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
     </center>
@@ -52,14 +46,14 @@
     <bottom>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btnSalvarProduto" text="Salvar" mnemonicParsing="false" />
-                <Button fx:id="btnVoltarProduto" text="Voltar" mnemonicParsing="false" />
+                <Button fx:id="btnSalvarItemPedido" mnemonicParsing="false" text="Salvar" />
+                <Button fx:id="btnVoltarItemPedido" mnemonicParsing="false" text="Voltar" />
             </children>
         </HBox>
     </bottom>
 
     <top>
-        <Label fx:id="txtTituloProduto" text="Cadastro de Produto" BorderPane.alignment="CENTER" />
+        <Label fx:id="txtTituloItemPedido" text="Cadastro de Item do Pedido" BorderPane.alignment="CENTER" />
     </top>
 
 </BorderPane>
