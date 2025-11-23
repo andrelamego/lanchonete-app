@@ -1,20 +1,18 @@
 package fatec.lanchoneteapp.application.service;
 
-import fatec.lanchoneteapp.adapters.repository.CategoriaRepository;
-import fatec.lanchoneteapp.application.exception.CargoNaoEncontradoException;
 import fatec.lanchoneteapp.application.exception.CategoriaInvalidaException;
 import fatec.lanchoneteapp.application.exception.CategoriaNaoEncontradaException;
-import fatec.lanchoneteapp.domain.entity.Cargo;
+import fatec.lanchoneteapp.application.repository.RepositoryNoReturn;
 import fatec.lanchoneteapp.domain.entity.Categoria;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class CategoriaService {
-    public final CategoriaRepository categoriaRepository;
+    public final RepositoryNoReturn<Categoria> repository;
 
-    public CategoriaService(CategoriaRepository categoriaRepository) {
-        this.categoriaRepository = categoriaRepository;
+    public CategoriaService(RepositoryNoReturn<Categoria> repository) {
+        this.repository = repository;
     }
 
     public void criarCategoria(Categoria categoria) throws SQLException {
@@ -23,7 +21,7 @@ public class CategoriaService {
     }
 
     public Categoria buscarCategoria(int idCategoria) throws SQLException, CategoriaNaoEncontradaException {
-        Categoria categoria = categoriaRepository.buscarPorID(new Categoria(idCategoria));
+        Categoria categoria = repository.buscarPorID(new Categoria(idCategoria));
 
         if(categoria == null)
             throw new CategoriaNaoEncontradaException("Categoria não encontrada");
@@ -32,15 +30,15 @@ public class CategoriaService {
     }
 
     public void atualizarCategoria(Categoria categoria) throws SQLException {
-        categoriaRepository.atualizar(categoria);
+        repository.atualizar(categoria);
     }
 
     public void removerCategoria(Categoria categoria) throws SQLException {
-        categoriaRepository.excluir(categoria);
+        repository.excluir(categoria);
     }
 
     public List<Categoria> listarCategorias() throws SQLException {
-        return categoriaRepository.listar();
+        return repository.listar();
     }
 
     //TODO: IMPLEMENTAR BUSCA POR NOME PARA VALIDAÇÃO

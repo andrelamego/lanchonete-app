@@ -1,18 +1,15 @@
 package fatec.lanchoneteapp.application.service;
 
-import fatec.lanchoneteapp.adapters.repository.ItemPedidoRepository;
+import fatec.lanchoneteapp.application.repository.RepositoryNoReturn;
 import fatec.lanchoneteapp.domain.entity.ItemPedido;
-import fatec.lanchoneteapp.domain.entity.Produto;
 
 import java.sql.SQLException;
 
 public class ItemPedidoService {
-    private final ItemPedidoRepository itemPedidoRepository;
-    private final ProdutoService produtoService;
+    private final RepositoryNoReturn<ItemPedido> repository;
 
-    public ItemPedidoService(ItemPedidoRepository itemPedidoRepository, ProdutoService produtoService) {
-        this.itemPedidoRepository = itemPedidoRepository;
-        this.produtoService = produtoService;
+    public ItemPedidoService(RepositoryNoReturn<ItemPedido> repository) {
+        this.repository = repository;
     }
 
     /**
@@ -23,7 +20,7 @@ public class ItemPedidoService {
      * @throws SQLException caso ocorra erro ao salvar no banco de dados
      */
     public void adicionarItem(ItemPedido item) throws SQLException {
-        itemPedidoRepository.salvar(item);
+        repository.salvar(item);
     }
 
     /**
@@ -34,7 +31,7 @@ public class ItemPedidoService {
      * @throws SQLException caso ocorra erro ao excluir o item do banco de dados
      */
     public void removerItem(ItemPedido item) throws SQLException {
-        itemPedidoRepository.excluir(item);
+        repository.excluir(item);
     }
 
     /**
@@ -45,7 +42,7 @@ public class ItemPedidoService {
      * @throws SQLException caso ocorra erro ao atualizar o item no banco de dados
      */
     public void atualizarQuantidade(ItemPedido item) throws SQLException {
-        itemPedidoRepository.atualizar(item);
+        repository.atualizar(item);
     }
 
     /**
@@ -58,6 +55,6 @@ public class ItemPedidoService {
      * @throws SQLException caso ocorra erro ao consultar o banco de dados
      */
     public ItemPedido buscarItem(int nPedido, int idProduto) throws SQLException {
-        return itemPedidoRepository.buscarPorID(new ItemPedido(nPedido, idProduto));
+        return repository.buscarPorID(new ItemPedido(nPedido, idProduto));
     }
 }
