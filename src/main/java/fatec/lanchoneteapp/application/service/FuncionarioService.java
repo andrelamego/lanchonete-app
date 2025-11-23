@@ -43,10 +43,9 @@ public class FuncionarioService {
         return funcionarioRepository.listar();
     }
 
-    //TODO: criar busca por nome (ou cpf/email) no repository e alterar aqui
     public boolean validarFuncionario(Funcionario funcionario) throws SQLException {
         try{
-            buscarFuncionario(funcionario.getId());
+            funcionarioRepository.buscarPorEmail(funcionario);
             return false;
         } catch(FuncionarioNaoEncontradoException e){
             return true;
