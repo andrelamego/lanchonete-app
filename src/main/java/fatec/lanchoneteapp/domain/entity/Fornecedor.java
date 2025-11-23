@@ -6,6 +6,7 @@ public class Fornecedor {
     private int id;
     private String nome;
     private String tel;
+    private String cnpj;
     private String logradouro;
     private int numero;
     private String cep;
@@ -20,6 +21,9 @@ public class Fornecedor {
     }
     public String getTel() {
         return tel;
+    }
+    public String getCnpj() {
+        return cnpj;
     }
     public String getLogradouro() {
         return logradouro;
@@ -45,7 +49,10 @@ public class Fornecedor {
     public void setTel(String tel) {
         this.tel = tel;
     }
-     public void setLogradouro(String logradouro) {
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+    public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
     }
     public void setNumero(int numero) {

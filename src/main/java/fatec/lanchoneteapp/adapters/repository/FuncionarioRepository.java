@@ -21,25 +21,27 @@ public class FuncionarioRepository implements RepositoryNoReturn<Funcionario> {
 
     @Override
     public void salvar(Funcionario entidade) throws SQLException {
-        String sql = "INSERT INTO Funcionario(?,?,?,?)";
+        String sql = "INSERT INTO Funcionario(?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, entidade.getNome());
         ps.setString(2, entidade.getTel());
-        ps.setDate(3, Date.valueOf(entidade.getDataContrato()));
-        ps.setInt(4, entidade.getCargo().getId());
+        ps.setString(3, entidade.getEmail());
+        ps.setDate(4, Date.valueOf(entidade.getDataContrato()));
+        ps.setInt(5, entidade.getCargo().getId());
         ps.execute();
         ps.close();
     }
 
     @Override
     public void atualizar(Funcionario entidade) throws SQLException {
-        String sql = "UPDATE Funcionario SET Nome = ?, Telefone = ?, DataContrato = ?, ID_Cargo = ? WHERE ID = ?";
+        String sql = "UPDATE Funcionario SET Nome = ?, Telefone = ?, Email = ?, DataContrato = ?, ID_Cargo = ? WHERE ID = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, entidade.getNome());
         ps.setString(2, entidade.getTel());
-        ps.setDate(3, Date.valueOf(entidade.getDataContrato()));
-        ps.setInt(4, entidade.getCargo().getId());
-        ps.setInt(5, entidade.getId());
+        ps.setString(3, entidade.getEmail());
+        ps.setDate(4, Date.valueOf(entidade.getDataContrato()));
+        ps.setInt(5, entidade.getCargo().getId());
+        ps.setInt(6, entidade.getId());
         ps.execute();
         ps.close();
     }
@@ -56,11 +58,11 @@ public class FuncionarioRepository implements RepositoryNoReturn<Funcionario> {
     @Override
     public Funcionario buscarPorID(Funcionario entidade) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT f.ID AS ID_Func, f.Nome AS Nome_Func, f.Telefone, f.DataContrato, ");
+        sql.append("SELECT f.ID AS ID_Func, f.Nome AS Nome_Func, f.Telefone, f.Email, f.DataContrato, ");
         sql.append("c.ID AS ID_Cargo, c.Nome AS Nome_Cargo, c.Salario, c.Descricao ");
         sql.append("FROM Funcionario f INNER JOIN Cargo c ");
         sql.append("ON f.ID_Cargo = c.ID ");
-        sql.append("WHERE ID = ?");
+        sql.append("WHERE f.ID = ?");
         PreparedStatement ps = connection.prepareStatement(sql.toString());
         ps.setInt(1, entidade.getId());
 
@@ -77,6 +79,7 @@ public class FuncionarioRepository implements RepositoryNoReturn<Funcionario> {
             entidade.setId(rs.getInt("ID_Func"));
             entidade.setNome(rs.getString("Nome_Func"));
             entidade.setTel(rs.getString("Telefone"));
+            entidade.setEmail(rs.getString("Email"));
             entidade.setDataContrato(rs.getDate("DataContrato").toLocalDate());
             entidade.setCargo(cargo);
             
@@ -97,7 +100,7 @@ public class FuncionarioRepository implements RepositoryNoReturn<Funcionario> {
     @Override
     public List<Funcionario> listar() throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT f.ID AS ID_Func, f.Nome AS Nome_Func, f.Telefone, f.DataContrato, ");
+        sql.append("SELECT f.ID AS ID_Func, f.Nome AS Nome_Func, f.Telefone, f.Email, f.DataContrato, ");
         sql.append("c.ID AS ID_Cargo, c.Nome AS Nome_Cargo, c.Salario, c.Descricao ");
         sql.append("FROM Funcionario f INNER JOIN Cargo c ");
         sql.append("ON f.ID_Cargo = c.ID");
@@ -117,6 +120,7 @@ public class FuncionarioRepository implements RepositoryNoReturn<Funcionario> {
             entidade.setId(rs.getInt("ID_Func"));
             entidade.setNome(rs.getString("Nome_Func"));
             entidade.setTel(rs.getString("Telefone"));
+            entidade.setEmail(rs.getString("Email"));
             entidade.setDataContrato(rs.getDate("DataContrato").toLocalDate());
             entidade.setCargo(cargo);
 
@@ -126,5 +130,46 @@ public class FuncionarioRepository implements RepositoryNoReturn<Funcionario> {
         rs.close();
         ps.close();
         return entidades;
+    }
+
+    public Funcionario buscarPorEmail(Funcionario entidade) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT f.ID AS ID_Func, f.Nome AS Nome_Func, f.Telefone, f.Email, f.DataContrato, ");
+        sql.append("c.ID AS ID_Cargo, c.Nome AS Nome_Cargo, c.Salario, c.Descricao ");
+        sql.append("FROM Funcionario f INNER JOIN Cargo c ");
+        sql.append("ON f.ID_Cargo = c.ID ");
+        sql.append("WHERE f.Email = ?");
+        PreparedStatement ps = connection.prepareStatement(sql.toString());
+        ps.setString(1, entidade.getEmail());
+
+        int cont = 0;
+        ResultSet rs = ps.executeQuery();
+
+        if(rs.next()){
+            Cargo cargo = new Cargo();
+            cargo.setId(rs.getInt("ID_Cargo"));
+            cargo.setNome(rs.getString("Nome_Cargo"));
+            cargo.setSalario(rs.getDouble("Salario"));
+            cargo.setDescricao(rs.getString("Descricao"));
+
+            entidade.setId(rs.getInt("ID_Func"));
+            entidade.setNome(rs.getString("Nome_Func"));
+            entidade.setTel(rs.getString("Telefone"));
+            entidade.setEmail(rs.getString("Email"));
+            entidade.setDataContrato(rs.getDate("DataContrato").toLocalDate());
+            entidade.setCargo(cargo);
+            
+            cont++;
+        }
+
+        if(cont == 0){
+            entidade = new Funcionario();
+            Cargo cargo = new Cargo();
+            entidade.setCargo(cargo);
+        }
+
+        rs.close();
+        ps.close();
+        return entidade;
     }
 }

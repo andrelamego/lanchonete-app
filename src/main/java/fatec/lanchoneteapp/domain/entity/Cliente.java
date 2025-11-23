@@ -4,6 +4,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String tel;
+    private String cpf;
     private String logradouro;
     private int numero;
     private String cep;
@@ -23,6 +24,9 @@ public class Cliente {
     }
     public String getTel() {
         return tel;
+    }
+    public String getCpf() {
+        return cpf;
     }
     public String getLogradouro() {
         return logradouro;
@@ -45,7 +49,10 @@ public class Cliente {
     public void setTel(String tel) {
         this.tel = tel;
     }
-     public void setLogradouro(String logradouro) {
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
     }
     public void setNumero(int numero) {

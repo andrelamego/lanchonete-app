@@ -59,7 +59,7 @@ public class ProdutoRepository implements RepositoryNoReturn<Produto> {
         sql.append("c.ID AS ID_Categoria, c.Nome AS Nome_Categoria, c.Descricao ");
         sql.append("FROM Produto p INNER JOIN Categoria c ");
         sql.append("ON p.ID_Categoria = c.ID ");
-        sql.append("WHERE ID = ?");
+        sql.append("WHERE p.ID = ?");
         PreparedStatement ps = connection.prepareStatement(sql.toString());
         ps.setInt(1, entidade.getId());
 

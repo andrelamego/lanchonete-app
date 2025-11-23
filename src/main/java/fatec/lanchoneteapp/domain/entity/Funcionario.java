@@ -6,6 +6,7 @@ public class Funcionario {
     private int id;
     private String nome;
     private String tel;
+    private String email;
     private LocalDate dataContrato;
     private Cargo cargo;
 
@@ -17,6 +18,9 @@ public class Funcionario {
     }
     public String getTel() {
         return tel;
+    }
+    public String getEmail() {
+        return email;
     }
     public LocalDate getDataContrato() {
         return dataContrato;
@@ -32,6 +36,9 @@ public class Funcionario {
     }
     public void setTel(String tel) {
         this.tel = tel;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
     public void setDataContrato(LocalDate dataContrat) {
         this.dataContrato = dataContrat;
