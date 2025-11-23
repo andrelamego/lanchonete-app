@@ -9,16 +9,16 @@ public class ClienteMapper {
             return null;
         }
 
-        Cliente cliente = new Cliente();
-        cliente.setId(dto.id());
-        cliente.setNome(dto.nome());
-        cliente.setTel(dto.tel());
-        cliente.setLogradouro(dto.logradouro());
-        cliente.setNumero(dto.numero());
-        cliente.setCep(dto.cep());
-        cliente.setComplemento(dto.complemento());
-
-        return cliente;
+        return new Cliente(
+                dto.id(),
+                dto.nome(),
+                dto.tel(),
+                dto.cpf(),
+                dto.logradouro(),
+                dto.numero(),
+                dto.cep(),
+                dto.complemento()
+        );
     }
 
     public ClienteDTO toDTO(Cliente cliente) {
@@ -30,6 +30,7 @@ public class ClienteMapper {
                 cliente.getId(),
                 cliente.getNome(),
                 cliente.getTel(),
+                cliente.getCpf(),
                 cliente.getLogradouro(),
                 cliente.getNumero(),
                 cliente.getCep(),
