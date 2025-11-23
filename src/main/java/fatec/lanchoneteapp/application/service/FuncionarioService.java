@@ -51,4 +51,9 @@ public class FuncionarioService {
             return true;
         }
     }
+
+    private void buscarFuncionarioPorEmail(Funcionario funcionario) throws SQLException {
+        if(funcionarioRepository.buscarPorEmail(funcionario) == null)
+            throw new FuncionarioNaoEncontradoException("Funcionário não encontrado");
+    }
 }

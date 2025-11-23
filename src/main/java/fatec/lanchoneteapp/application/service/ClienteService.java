@@ -47,10 +47,15 @@ public class ClienteService {
 
     public boolean validarCliente(Cliente cliente) throws SQLException {
         try{
-            clienteRepository.buscarPorCpf(cliente);
+            buscarClientePorCPF(cliente);
             return false;
         } catch(ClienteNaoEncontradoException e){
             return true;
         }
+    }
+
+    private void buscarClientePorCPF(Cliente cliente) throws SQLException, ClienteNaoEncontradoException {
+        if(clienteRepository.buscarPorCpf(cliente) == null)
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
     }
 }
