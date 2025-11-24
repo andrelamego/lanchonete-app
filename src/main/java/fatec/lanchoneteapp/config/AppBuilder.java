@@ -42,7 +42,7 @@ public class AppBuilder {
     private final RepositoryNoReturn<Categoria> categoriaRepository;
     private final RepositoryNoReturn<Fornecedor> fornecedorRepository;
     private final RepositoryNoReturn<Funcionario> funcionarioRepository;
-    private final RepositoryNoReturn<Produto> produtoRepository;
+    private final RepositoryReturn<Produto> produtoRepository;
     private final RepositoryNoReturn<ItemPedido> itemPedidoRepository;
     private final RepositoryNoReturn<ProdutoFornecedor> produtoFornecedorRepository;
 

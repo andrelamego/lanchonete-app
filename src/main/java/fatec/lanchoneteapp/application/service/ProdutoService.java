@@ -3,6 +3,7 @@ package fatec.lanchoneteapp.application.service;
 import fatec.lanchoneteapp.application.exception.ProdutoInvalidoException;
 import fatec.lanchoneteapp.application.exception.ProdutoNaoEncontradoException;
 import fatec.lanchoneteapp.application.repository.RepositoryNoReturn;
+import fatec.lanchoneteapp.application.repository.RepositoryReturn;
 import fatec.lanchoneteapp.domain.entity.Produto;
 
 import java.sql.SQLException;
@@ -10,9 +11,9 @@ import java.util.List;
 
 public class ProdutoService {
 
-    private final RepositoryNoReturn<Produto> repository;
+    private final RepositoryReturn<Produto> repository;
 
-    public ProdutoService(RepositoryNoReturn<Produto> repository) {
+    public ProdutoService(RepositoryReturn<Produto> repository) {
         this.repository = repository;
     }
 
