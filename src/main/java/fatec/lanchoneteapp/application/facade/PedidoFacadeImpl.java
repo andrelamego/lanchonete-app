@@ -22,21 +22,18 @@ public class PedidoFacadeImpl implements PedidoFacade{
     private final ItemPedidoService itemPedidoService;
     private final ProdutoService produtoService;
     private final ClienteService clienteService;
-    private final ManterPedidoUseCase manterPedidoUC;
-    private final PedidoMapper mapper;
 
-    public PedidoFacadeImpl(ManterPedidoUseCase manterPedidoUC,
-                            PedidoService pedidoService,
+    private final ManterPedidoUseCase manterPedidoUC = new ManterPedidoUseCase();
+    private final PedidoMapper mapper = new PedidoMapper();
+
+    public PedidoFacadeImpl(PedidoService pedidoService,
                             ItemPedidoService itemPedidoService,
                             ProdutoService produtoService,
-                            ClienteService clienteService,
-                            PedidoMapper mapper) {
-        this.manterPedidoUC = manterPedidoUC;
+                            ClienteService clienteService) {
         this.pedidoService = pedidoService;
         this.itemPedidoService = itemPedidoService;
         this.produtoService = produtoService;
         this.clienteService = clienteService;
-        this.mapper = mapper;
     }
 
     @Override
