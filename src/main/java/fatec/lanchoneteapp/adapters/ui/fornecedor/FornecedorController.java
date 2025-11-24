@@ -73,6 +73,7 @@ public class FornecedorController extends Controller implements Initializable, I
                     onRemoverClick(tvListaFornecedores.getItems().get(getIndex()));
                 }
             );
+            btnApagar.setPrefWidth(100);
 
             btnEditar.setOnAction(click -> {
                     try {
@@ -82,13 +83,19 @@ public class FornecedorController extends Controller implements Initializable, I
                     }
                 }
             );
+            btnEditar.setPrefWidth(100);
+        }
+
+        private final HBox hbox = new HBox(5, btnEditar, btnApagar);
+        {
+            hbox.setStyle("-fx-alignment: CENTER;");
         }
 
         @Override
         public void updateItem(Void item, boolean empty) {
             super.updateItem(item, empty);
             if (!empty) {
-                setGraphic( new HBox(btnEditar, btnApagar) );
+                setGraphic( hbox );
             } else {
                 setGraphic( null );
             }
