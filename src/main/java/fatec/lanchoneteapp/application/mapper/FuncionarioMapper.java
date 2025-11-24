@@ -6,12 +6,13 @@ import fatec.lanchoneteapp.domain.entity.Funcionario;
 public class FuncionarioMapper {
     public Funcionario toEntity(FuncionarioDTO dto) {
         if (dto == null) {
-
+            return null;
         }
 
         return new Funcionario(
                 dto.nome(),
                 dto.tel(),
+                dto.email(),
                 dto.dataContrato(),
                 dto.cargo()
         );
@@ -26,6 +27,7 @@ public class FuncionarioMapper {
                 funcionario.getId(),
                 funcionario.getNome(),
                 funcionario.getTel(),
+                funcionario.getEmail(),
                 funcionario.getDataContrato(),
                 funcionario.getCargo()
         );

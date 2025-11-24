@@ -90,37 +90,34 @@ public interface CadastroFacade {
      * Cria um novo cargo com base nas informações fornecidas.
      *
      * @param cargo o objeto CargoDTO que contém os dados do cargo a ser criado
-     * @return o objeto CargoDTO representando o cargo criado
      */
-    CargoDTO novoCargo(CargoDTO cargo);
+    void novoCargo(CargoDTO cargo) throws SQLException;
     /**
      * Busca os detalhes de um cargo específico com base no seu ID.
      *
      * @param idCargo o identificador único do cargo a ser buscado
      * @return os detalhes do cargo encapsulados em um objeto CargoDTO
      */
-    CargoDTO buscarCargo(int idCargo);
+    CargoDTO buscarCargo(int idCargo) throws SQLException;
     /**
      * Atualiza as informações de um cargo existente.
      *
      * @param cargo um objeto CargoDTO contendo os dados atualizados do cargo
-     * @return um objeto CargoDTO representando o cargo atualizado
      */
-    CargoDTO atualizarCargo(CargoDTO cargo);
+    void atualizarCargo(CargoDTO cargo) throws SQLException;
     /**
      * Remove o cargo identificado pelo ID especificado do sistema.
      *
      * @param idCargo o ID do cargo a ser removido
-     * @return os detalhes do cargo removido encapsulados em um objeto CargoDTO
      */
-    CargoDTO removerCargo(int idCargo);
+    void removerCargo(int idCargo) throws SQLException;
 
     /**
      * Retorna uma lista de todos os cargos cadastrados no sistema.
      *
      * @return uma lista de objetos CargoDTO representando os cargos cadastrados
      */
-    List<CargoDTO> listarCargos();
+    List<CargoDTO> listarCargos() throws SQLException;
 
     //PRODUTO
     /**
@@ -161,9 +158,8 @@ public interface CadastroFacade {
      * Cria uma nova categoria no sistema com base nas informações fornecidas.
      *
      * @param categoria um objeto CategoriaDTO contendo os detalhes da nova categoria a ser criada
-     * @return o objeto CategoriaDTO representando a categoria criada
      */
-    CategoriaDTO novaCategoria(CategoriaDTO categoria);
+    void novaCategoria(CategoriaDTO categoria) throws SQLException;
 
     /**
      * Busca uma categoria específica pelo seu ID.
@@ -171,28 +167,64 @@ public interface CadastroFacade {
      * @param idCategoria o identificador único da categoria a ser buscada
      * @return os detalhes da categoria encapsulados em um objeto CategoriaDTO
      */
-    CategoriaDTO buscarCategoria(int idCategoria);
+    CategoriaDTO buscarCategoria(int idCategoria) throws SQLException;
 
     /**
      * Atualiza as informações de uma categoria existente no sistema.
      *
      * @param categoria o objeto CategoriaDTO contendo os dados atualizados da categoria
-     * @return o objeto CategoriaDTO contendo as informações atualizadas da categoria
      */
-    CategoriaDTO atualizarCategoria(CategoriaDTO categoria);
+    void atualizarCategoria(CategoriaDTO categoria) throws SQLException;
 
     /**
      * Remove uma categoria existente com base no seu ID.
      *
      * @param idCategoria o ID da categoria a ser removida
-     * @return os detalhes da categoria removida encapsulados em um objeto CategoriaDTO
      */
-    CategoriaDTO removerCategoria(int idCategoria);
+    void removerCategoria(int idCategoria) throws SQLException;
 
     /**
      * Retorna uma lista de todas as categorias cadastradas no sistema.
      *
      * @return uma lista de objetos CategoriaDTO representando as categorias cadastradas
      */
-    List<CategoriaDTO> listarCategorias();
+    List<CategoriaDTO> listarCategorias() throws SQLException;
+
+    //FORNECEDOR
+
+    /**
+     * Registra um novo fornecedor no sistema com base nas informações fornecidas.
+     *
+     * @param fornecedorDTO um objeto FornecedorDTO contendo os dados do novo fornecedor a ser registrado
+     */
+    void novoFornecedor(FornecedorDTO fornecedorDTO) throws SQLException;
+
+    /**
+     * Busca os detalhes de um fornecedor específico com base no seu ID.
+     *
+     * @param idFornecedor o identificador único do fornecedor a ser buscado
+     * @return um objeto FornecedorDTO contendo os detalhes do fornecedor
+     */
+    FornecedorDTO buscarFornecedor(int idFornecedor) throws SQLException;
+
+    /**
+     * Atualiza as informações de um fornecedor existente no sistema.
+     *
+     * @param fornecedorDTO um objeto FornecedorDTO contendo os dados atualizados do fornecedor
+     */
+    void atualizarFornecedor(FornecedorDTO fornecedorDTO) throws SQLException;
+
+    /**
+     * Remove um fornecedor do sistema com base no seu ID.
+     *
+     * @param idFornecedor o ID do fornecedor a ser removido
+     */
+    void removerFornecedor(int idFornecedor) throws SQLException;
+
+    /**
+     * Retorna uma lista de todos os fornecedores cadastrados no sistema.
+     *
+     * @return uma lista de objetos FornecedorDTO representando os fornecedores cadastrados
+     */
+    List<FornecedorDTO> listarFornecedores() throws SQLException;
 }

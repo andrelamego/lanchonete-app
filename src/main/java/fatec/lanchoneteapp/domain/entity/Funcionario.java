@@ -14,9 +14,11 @@ public class Funcionario {
     public Funcionario(int id) {
         this.id = id;
     }
-    public Funcionario(String nome, String tel, LocalDate dataContrato, Cargo cargo) {
+
+    public Funcionario(String nome, String tel, String email, LocalDate dataContrato, Cargo cargo) {
         this.nome = nome;
         this.tel = tel;
+        this.email = email;
         this.dataContrato = dataContrato;
         this.cargo = cargo;
     }

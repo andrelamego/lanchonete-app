@@ -44,6 +44,7 @@ public class ProdutoService {
         return produtoRepository.listar();
     }
 
+    //TODO: IMPLEMENTAR BUSCA POR NOME NO REPOSITORY PARA VERIFICAÇÃO DE DUPLICIDADE
     public boolean validarProduto(Produto produto) throws SQLException {
         try{
             buscarProduto(produto.getId());

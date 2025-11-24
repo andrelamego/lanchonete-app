@@ -3,7 +3,7 @@ package fatec.lanchoneteapp.application.service;
 import fatec.lanchoneteapp.adapters.repository.ClienteRepository;
 import fatec.lanchoneteapp.application.exception.ClienteInvalidoException;
 import fatec.lanchoneteapp.application.exception.ClienteNaoEncontradoException;
-import fatec.lanchoneteapp.application.mapper.ClienteMapper;
+import fatec.lanchoneteapp.application.repository.RepositoryNoReturn;
 import fatec.lanchoneteapp.domain.entity.Cliente;
 
 import java.sql.SQLException;
@@ -11,29 +11,29 @@ import java.util.List;
 
 public class ClienteService {
 
-    private final ClienteRepository clienteRepository;
+    private final ClienteRepository repository;
 
-    public ClienteService(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
+    public ClienteService(ClienteRepository repository) {
+        this.repository = repository;
     }
 
     public void criarCliente(Cliente cliente) throws SQLException, ClienteInvalidoException {
         if(!validarCliente(cliente))
             throw new ClienteInvalidoException("Cliente já cadastrado");
 
-        clienteRepository.salvar(cliente);
+        repository.salvar(cliente);
     }
 
     public void atualizarCliente(Cliente cliente) throws SQLException {
-        clienteRepository.atualizar(cliente);
+        repository.atualizar(cliente);
     }
 
     public void excluirCliente(Cliente cliente) throws SQLException {
-        clienteRepository.excluir(cliente);
+        repository.excluir(cliente);
     }
 
     public Cliente buscarCliente(int clienteId) throws SQLException,ClienteNaoEncontradoException {
-        Cliente cliente = clienteRepository.buscarPorID(new Cliente(clienteId));
+        Cliente cliente = repository.buscarPorID(new Cliente(clienteId));
 
         if(cliente == null)
             throw new ClienteNaoEncontradoException("Cliente não encontrado");
@@ -42,16 +42,20 @@ public class ClienteService {
     }
 
     public List<Cliente> listarClientes() throws SQLException {
-        return clienteRepository.listar();
+        return repository.listar();
     }
 
-    //TODO: criar busca por nome (ou cpf/email) no repository e alterar aqui
     public boolean validarCliente(Cliente cliente) throws SQLException {
         try{
-            buscarCliente(cliente.getId());
+            buscarClientePorCPF(cliente);
             return false;
         } catch(ClienteNaoEncontradoException e){
             return true;
         }
+    }
+
+    private void buscarClientePorCPF(Cliente cliente) throws SQLException, ClienteNaoEncontradoException {
+        if(repository.buscarPorCpf(cliente) == null)
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
     }
 }

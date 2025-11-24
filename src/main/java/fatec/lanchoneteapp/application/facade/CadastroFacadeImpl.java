@@ -1,19 +1,10 @@
 package fatec.lanchoneteapp.application.facade;
 
 import fatec.lanchoneteapp.application.dto.*;
-import fatec.lanchoneteapp.application.exception.ClienteInvalidoException;
-import fatec.lanchoneteapp.application.exception.ClienteNaoEncontradoException;
-import fatec.lanchoneteapp.application.exception.FuncionarioInvalidoException;
-import fatec.lanchoneteapp.application.exception.ProdutoNaoEncontradoException;
-import fatec.lanchoneteapp.application.mapper.ClienteMapper;
-import fatec.lanchoneteapp.application.mapper.FuncionarioMapper;
-import fatec.lanchoneteapp.application.mapper.ProdutoMapper;
-import fatec.lanchoneteapp.application.service.ClienteService;
-import fatec.lanchoneteapp.application.service.FuncionarioService;
-import fatec.lanchoneteapp.application.service.ProdutoService;
-import fatec.lanchoneteapp.domain.entity.Cliente;
-import fatec.lanchoneteapp.domain.entity.Funcionario;
-import fatec.lanchoneteapp.domain.entity.Produto;
+import fatec.lanchoneteapp.application.exception.*;
+import fatec.lanchoneteapp.application.mapper.*;
+import fatec.lanchoneteapp.application.service.*;
+import fatec.lanchoneteapp.domain.entity.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -29,10 +20,25 @@ public class CadastroFacadeImpl implements CadastroFacade{
     private final ProdutoService produtoService;
     private final ProdutoMapper produtoMapper = new ProdutoMapper();
 
-    public CadastroFacadeImpl(ClienteService clienteService, FuncionarioService funcionarioService, ProdutoService produtoService) {
+    private final CargoService cargoService;
+    private final CargoMapper cargoMapper = new CargoMapper();
+
+    private final CategoriaService categoriaService;
+    private final CategoriaMapper categoriaMapper = new CategoriaMapper();
+
+    private final FornecedorService fornecedorService;
+    private final FornecedorMapper fornecedorMapper = new FornecedorMapper();
+
+    public CadastroFacadeImpl(ClienteService clienteService,
+                              FuncionarioService funcionarioService,
+                              ProdutoService produtoService,
+                              CargoService cargoService, CategoriaService categoriaService, FornecedorService fornecedorService) {
         this.clienteService = clienteService;
         this.funcionarioService = funcionarioService;
         this.produtoService = produtoService;
+        this.cargoService = cargoService;
+        this.categoriaService = categoriaService;
+        this.fornecedorService = fornecedorService;
     }
 
     @Override
@@ -73,7 +79,7 @@ public class CadastroFacadeImpl implements CadastroFacade{
     }
 
     @Override
-    public FuncionarioDTO buscarFuncionario(int idFuncionario) throws SQLException, FuncionarioInvalidoException {
+    public FuncionarioDTO buscarFuncionario(int idFuncionario) throws SQLException, FuncionarioNaoEncontradoException {
         return funcionarioMapper.toDTO(funcionarioService.buscarFuncionario(idFuncionario));
     }
 
@@ -83,7 +89,7 @@ public class CadastroFacadeImpl implements CadastroFacade{
     }
 
     @Override
-    public void removerFuncionario(int idFuncionario) throws SQLException, ClienteNaoEncontradoException {
+    public void removerFuncionario(int idFuncionario) throws SQLException, FuncionarioNaoEncontradoException {
         Funcionario funcionario = funcionarioService.buscarFuncionario(idFuncionario);
         funcionarioService.excluirFuncionario(funcionario);
     }
@@ -98,28 +104,32 @@ public class CadastroFacadeImpl implements CadastroFacade{
     //==================================================================================
 
     @Override
-    public CargoDTO novoCargo(CargoDTO cargo) {
-        return null;
+    public void novoCargo(CargoDTO cargoDTO) throws SQLException, CargoInvalidoException {
+        Cargo cargo = cargoMapper.toEntity(cargoDTO);
+        cargoService.criarCargo(cargo);
     }
 
     @Override
-    public CargoDTO buscarCargo(int idCargo) {
-        return null;
+    public CargoDTO buscarCargo(int idCargo) throws SQLException, CargoNaoEncontradoException {
+        return cargoMapper.toDTO(cargoService.buscarCargo(idCargo));
     }
 
     @Override
-    public CargoDTO atualizarCargo(CargoDTO cargo) {
-        return null;
+    public void atualizarCargo(CargoDTO cargoDTO) throws SQLException {
+        cargoService.atualizarCargo(cargoMapper.toEntity(cargoDTO));
     }
 
     @Override
-    public CargoDTO removerCargo(int idCargo) {
-        return null;
+    public void removerCargo(int idCargo) throws SQLException, CargoNaoEncontradoException {
+        Cargo cargo = cargoService.buscarCargo(idCargo);
+        cargoService.excluirCargo(cargo);
     }
 
     @Override
-    public List<CargoDTO> listarCargos() {
-        return List.of();
+    public List<CargoDTO> listarCargos() throws SQLException {
+        return cargoService.listarCargos().stream()
+                .map(cargoMapper::toDTO)
+                .toList();
     }
 
     //==================================================================================
@@ -156,27 +166,60 @@ public class CadastroFacadeImpl implements CadastroFacade{
     //==================================================================================
 
     @Override
-    public CategoriaDTO novaCategoria(CategoriaDTO categoria) {
-        return null;
+    public void novaCategoria(CategoriaDTO categoriaDTO) throws SQLException, CategoriaInvalidaException {
+        categoriaService.criarCategoria(categoriaMapper.toEntity(categoriaDTO));
     }
 
     @Override
-    public CategoriaDTO buscarCategoria(int idCategoria) {
-        return null;
+    public CategoriaDTO buscarCategoria(int idCategoria) throws SQLException, CategoriaNaoEncontradaException {
+        return categoriaMapper.toDTO(categoriaService.buscarCategoria(idCategoria));
     }
 
     @Override
-    public CategoriaDTO atualizarCategoria(CategoriaDTO categoria) {
-        return null;
+    public void atualizarCategoria(CategoriaDTO categoriaDTO) throws SQLException {
+        categoriaService.atualizarCategoria(categoriaMapper.toEntity(categoriaDTO));
     }
 
     @Override
-    public CategoriaDTO removerCategoria(int idCategoria) {
-        return null;
+    public void removerCategoria(int idCategoria) throws SQLException {
+        Categoria categoria = categoriaService.buscarCategoria(idCategoria);
+        categoriaService.removerCategoria(categoria);
     }
 
     @Override
-    public List<CategoriaDTO> listarCategorias() {
-        return List.of();
+    public List<CategoriaDTO> listarCategorias() throws SQLException {
+        return categoriaService.listarCategorias().stream()
+                .map(categoriaMapper::toDTO)
+                .toList();
+    }
+
+    //==================================================================================
+
+    @Override
+    public void novoFornecedor(FornecedorDTO fornecedorDTO) throws SQLException, FornecedorInvalidoException {
+        fornecedorService.criarFornecedor(fornecedorMapper.toEntity(fornecedorDTO));
+    }
+
+    @Override
+    public FornecedorDTO buscarFornecedor(int idFornecedor) throws SQLException, FornecedorNaoEncontradoException {
+        return fornecedorMapper.toDTO(fornecedorService.buscarFornecedor(idFornecedor));
+    }
+
+    @Override
+    public void atualizarFornecedor(FornecedorDTO fornecedorDTO) throws SQLException {
+        fornecedorService.atualizarFornecedor(fornecedorMapper.toEntity(fornecedorDTO));
+    }
+
+    @Override
+    public void removerFornecedor(int idFornecedor) throws SQLException {
+        Fornecedor fornecedor = fornecedorService.buscarFornecedor(idFornecedor);
+        fornecedorService.removerFornecedor(fornecedor);
+    }
+
+    @Override
+    public List<FornecedorDTO> listarFornecedores() throws SQLException {
+        return fornecedorService.listarFornecedores().stream()
+                .map(fornecedorMapper::toDTO)
+                .toList();
     }
 }

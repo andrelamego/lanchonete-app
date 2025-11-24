@@ -16,6 +16,17 @@ public class Cliente {
         this.id = id;
     }
 
+    public Cliente(int id, String nome, String tel, String cpf, String logradouro, int numero, String cep, String complemento) {
+        this.id = id;
+        this.nome = nome;
+        this.tel = tel;
+        this.cpf = cpf;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cep = cep;
+        this.complemento = complemento;
+    }
+
     public int getId() {
         return id;
     }
