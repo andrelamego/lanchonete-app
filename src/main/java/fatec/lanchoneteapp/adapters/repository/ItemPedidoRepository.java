@@ -62,9 +62,9 @@ public class ItemPedidoRepository implements RepositoryNoReturn<ItemPedido>{
     public ItemPedido buscarPorID(ItemPedido entidade) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ip.Num_Pedido, ip.Qtd, ip.ValorUnit, ip.ValorTotalItem, ");
-        sql.append("p.ID AS ID_Produto, p.Nome AS Nome_Produto,  p.QtdEstoque, p.ValorUnit ");
-        sql.append("c.ID AS ID_Categoria c.Nome, c.Descricao ");
-        sql.append("FROM ItemPedido ip INNER JOIN Produto p ");
+        sql.append("p.ID AS ID_Produto, p.Nome AS Nome_Produto, p.QtdEstoque, p.ValorUnit, ");
+        sql.append("c.ID AS ID_Categoria, c.Nome, c.Descricao ");
+        sql.append("FROM Item_Pedido ip INNER JOIN Produto p ");
         sql.append("ON ip.ID_Produto = p.ID ");
         sql.append("INNER JOIN Categoria c ");
         sql.append("ON p.ID_Categoria = c.ID ");
@@ -111,9 +111,9 @@ public class ItemPedidoRepository implements RepositoryNoReturn<ItemPedido>{
     public List<ItemPedido> listar() throws SQLException {
          StringBuilder sql = new StringBuilder();
         sql.append("SELECT ip.Num_Pedido, ip.Qtd, ip.ValorUnit, ip.ValorTotalItem, ");
-        sql.append("p.ID AS ID_Produto, p.Nome AS Nome_Produto,  p.QtdEstoque, p.ValorUnit ");
-        sql.append("c.ID AS ID_Categoria c.Nome, c.Descricao ");
-        sql.append("FROM ItemPedido ip INNER JOIN Produto p ");
+        sql.append("p.ID AS ID_Produto, p.Nome AS Nome_Produto, p.QtdEstoque, p.ValorUnit, ");
+        sql.append("c.ID AS ID_Categoria, c.Nome, c.Descricao ");
+        sql.append("FROM Item_Pedido ip INNER JOIN Produto p ");
         sql.append("ON ip.ID_Produto = p.ID ");
         sql.append("INNER JOIN Categoria c ");
         sql.append("ON p.ID_Categoria = c.ID");
@@ -154,9 +154,9 @@ public class ItemPedidoRepository implements RepositoryNoReturn<ItemPedido>{
     public ItemPedido buscarPorChaveSecundaria(ItemPedido entidade) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ip.Num_Pedido, ip.Qtd, ip.ValorUnit, ip.ValorTotalItem, ");
-        sql.append("p.ID AS ID_Produto, p.Nome AS Nome_Produto,  p.QtdEstoque, p.ValorUnit ");
-        sql.append("c.ID AS ID_Categoria c.Nome, c.Descricao ");
-        sql.append("FROM ItemPedido ip INNER JOIN Produto p ");
+        sql.append("p.ID AS ID_Produto, p.Nome AS Nome_Produto, p.QtdEstoque, p.ValorUnit, ");
+        sql.append("c.ID AS ID_Categoria, c.Nome, c.Descricao ");
+        sql.append("FROM Item_Pedido ip INNER JOIN Produto p ");
         sql.append("ON ip.ID_Produto = p.ID ");
         sql.append("INNER JOIN Categoria c ");
         sql.append("ON p.ID_Categoria = c.ID ");
