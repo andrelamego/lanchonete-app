@@ -43,13 +43,14 @@ public class ProdutoRepository implements RepositoryReturn<Produto> {
 
     @Override
     public void atualizar(Produto entidade) throws SQLException {
-        String sql = "UPDATE Produto SET Nome = ?, QtdEstoque = ?, ValorUnit = ?, ID_Categoria = ?, ID_Produto = ? WHERE ID = ?";
+        String sql = "UPDATE Produto SET Nome = ?, QtdEstoque = ?, ValorUnit = ?, ID_Categoria = ?, ID_Fornecedor = ? WHERE ID = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, entidade.getNome());
         ps.setInt(2, entidade.getQntdEstoq());
         ps.setDouble(3, entidade.getValorUn());
         ps.setInt(4, entidade.getCategoria().getId());
-        ps.setInt(5, entidade.getId());
+        ps.setInt(5, entidade.getFornecedor().getId());
+        ps.setInt(6, entidade.getId());
         ps.execute();
         ps.close();
     }
