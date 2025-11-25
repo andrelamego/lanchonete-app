@@ -5,6 +5,7 @@ import fatec.lanchoneteapp.adapters.ui.controller.IFormController;
 import fatec.lanchoneteapp.application.dto.CargoDTO;
 import fatec.lanchoneteapp.application.dto.FuncionarioDTO;
 import fatec.lanchoneteapp.application.exception.ClienteInvalidoException;
+import fatec.lanchoneteapp.application.exception.FornecedorInvalidoException;
 import fatec.lanchoneteapp.application.facade.CadastroFacade;
 import fatec.lanchoneteapp.application.mapper.CargoMapper;
 import javafx.fxml.FXML;
@@ -61,7 +62,7 @@ public class FuncionarioFormController extends Controller implements IFormContro
 
                 criarInfoAlert("Sucesso!", "Funcionário atualizado com sucesso.");
                 onVoltarClick();
-            } catch (ClienteInvalidoException e) {
+            } catch (FornecedorInvalidoException e) {
                 criarErrorAlert("Funcionário inválido!", e.getMessage());
             } catch (SQLException sql) {
                 criarErrorAlert("Ocorreu um erro", sql.getMessage());
@@ -82,7 +83,7 @@ public class FuncionarioFormController extends Controller implements IFormContro
 
                 criarInfoAlert("Sucesso!", "Funcionário inserido com sucesso");
                 onVoltarClick();
-            } catch (ClienteInvalidoException e) {
+            } catch (FornecedorInvalidoException e) {
                 criarErrorAlert("Funcionário inválido!", e.getMessage());
             } catch (SQLException sql) {
                 criarErrorAlert("Ocorreu um erro", sql.getMessage());
@@ -155,7 +156,5 @@ public class FuncionarioFormController extends Controller implements IFormContro
         } catch (SQLException e) {
             criarErrorAlert("Erro", "Não foi possível carregar os cargos:\n" + e.getMessage());
         }
-
-
     }
 }

@@ -20,6 +20,15 @@ public class Pedido {
         this.nPedido = nPedido;
     }
 
+    public Pedido(int nPedido, double valorTotal, List<ItemPedido> itensPedido, LocalDate data, String status, Cliente cliente) {
+        this.cliente = cliente;
+        this.data = data;
+        this.itensPedido = itensPedido;
+        this.nPedido = nPedido;
+        this.status = status;
+        this.valorTotal = valorTotal;
+    }
+
     public int getnPedido() {
         return nPedido;
     }

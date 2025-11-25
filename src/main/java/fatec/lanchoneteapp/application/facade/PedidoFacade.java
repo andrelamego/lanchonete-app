@@ -1,5 +1,6 @@
 package fatec.lanchoneteapp.application.facade;
 
+import fatec.lanchoneteapp.application.dto.ItemPedidoDTO;
 import fatec.lanchoneteapp.application.dto.PedidoDTO;
 import fatec.lanchoneteapp.domain.entity.ItemPedido;
 import fatec.lanchoneteapp.domain.entity.Produto;
@@ -88,4 +89,8 @@ public interface PedidoFacade {
      * @return os detalhes do pedido atualizado encapsulados em um objeto PedidoDTO
      */
     PedidoDTO atualizarStatus(int nPedido, String novoStatus) throws SQLException;
+
+
+    //TODO: IMPLEMENTAR
+    ItemPedidoDTO listarProdutos();
 }

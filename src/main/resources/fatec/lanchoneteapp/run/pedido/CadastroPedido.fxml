@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatec.lanchoneteapp.adapters.ui.PedidoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatec.lanchoneteapp.adapters.ui.pedido.PedidoFormController">
 
     <bottom>
         <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="595.0" spacing="5.0" BorderPane.alignment="CENTER">
@@ -47,14 +47,14 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Valor Total:" />
+                              <Label text="Valor Total:" GridPane.rowIndex="3" />
                               <Label text="Data:" GridPane.rowIndex="1" />
                               <Label text="Status:" GridPane.rowIndex="2" />
-                              <Label text="Cliente:" GridPane.rowIndex="3" />
-                              <TextField fx:id="tfValorTotal" prefHeight="25.0" prefWidth="366.0" promptText="Valor Total" GridPane.columnIndex="1" />
-                              <DatePicker fx:id="dpDataPedido" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="tfStatusPedido" prefHeight="25.0" prefWidth="384.0" promptText="Status" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="tfNomeCliente" promptText="Nome do Cliente" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Cliente:" />
+                              <TextField fx:id="tfValorTotal" editable="false" prefHeight="25.0" prefWidth="366.0" promptText="Valor Total" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <DatePicker fx:id="dpDataPedido" promptText="Deixe vazio para Hoje" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="tfStatusPedido" prefHeight="25.0" prefWidth="384.0" promptText="Status (Deixe vazio para 'Em preparo')" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="tfNomeCliente" promptText="Nome do Cliente" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </children>
@@ -87,10 +87,11 @@
                                           <TableView fx:id="tvListaItensPedido" prefHeight="90.0" prefWidth="459.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <columns>
                                                 <TableColumn fx:id="tcIDProduto" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" resizable="false" style="-fx-alignment: CENTER;" text="ID Produto" />
-                                                <TableColumn fx:id="tcNomeProduto" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Quantidade" />
-                                                <TableColumn fx:id="tcQtdEstoqueProduto" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Valor Unitário" />
-                                                <TableColumn fx:id="tcDataContratoProduto" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Valor Total" />
-                                                <TableColumn minWidth="100.0" prefWidth="100.0" sortable="false" style="-fx-alignment: CENTER;" text="Ações" />
+                                                <TableColumn fx:id="tcNomeProduto" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Nome" />
+                                                <TableColumn fx:id="tcQtdProduto" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Quantidade" />
+                                                <TableColumn fx:id="tcValorUnitProduto" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Valor Unitário" />
+                                                <TableColumn fx:id="tcValorTotalProduto" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Valor Total" />
+                                                <TableColumn fx:id="tcAcoesItemPedido" minWidth="100.0" prefWidth="100.0" sortable="false" style="-fx-alignment: CENTER;" text="Ações" />
                                              </columns>
                                           </TableView>
                                        </children>

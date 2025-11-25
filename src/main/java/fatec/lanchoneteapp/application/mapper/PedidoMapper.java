@@ -18,4 +18,19 @@ public class PedidoMapper {
                 pedido.getCliente()
         );
     }
+
+    public Pedido toEntity(PedidoDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        return new Pedido(
+                dto.nPedido(),
+                dto.valorTotal(),
+                dto.itensPedido(),
+                dto.data(),
+                dto.status(),
+                dto.cliente()
+        );
+    }
 }

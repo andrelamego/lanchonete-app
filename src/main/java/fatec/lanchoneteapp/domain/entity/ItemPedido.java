@@ -24,6 +24,14 @@ public class ItemPedido {
         this.qtd = qtd;
     }
 
+    public ItemPedido(int nPedido, Produto produto, int qtd, double valorUnit, double valorTotal) {
+        this.nPedido = nPedido;
+        this.produto = produto;
+        this.qtd = qtd;
+        this.valorTotal = valorTotal;
+        this.valorUnit = valorUnit;
+    }
+
     public int getNumPedido() {
         return nPedido;
     }

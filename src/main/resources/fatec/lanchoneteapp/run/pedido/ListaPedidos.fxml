@@ -4,12 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatec.lanchoneteapp.adapters.ui.PedidoController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatec.lanchoneteapp.adapters.ui.pedido.PedidoController">
     <bottom>
         <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="btnInserirPedido" mnemonicParsing="false" onAction="#onInserirClick" text="Inserir" />
-                <Button fx:id="btnBuscarPedido" mnemonicParsing="false" text="Buscar" />
+                <Button fx:id="btnBuscarPedido" mnemonicParsing="false" onAction="#onBuscarClick" text="Buscar" />
             </children>
          <BorderPane.margin>
             <Insets />
@@ -30,7 +30,7 @@
             </rowConstraints>
             <children>
                 <Label alignment="CENTER" text="Lista de Pedidos" />
-                <TextField fx:id="tfBuscarPedido" promptText="Buscar por ID" GridPane.rowIndex="1" />
+                <TextField fx:id="tfBuscarPedido" onAction="#onBuscarClick" promptText="Buscar por ID" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </top>
@@ -45,6 +45,7 @@
                         <TableColumn fx:id="tcValorTotalPedido" prefWidth="130.0" style="-fx-alignment: CENTER;" text="Valor Total" />
                         <TableColumn fx:id="tcDataPedido" prefWidth="129.0" style="-fx-alignment: CENTER;" text="Data" />
                         <TableColumn fx:id="tcStatusPedido" prefWidth="117.0" style="-fx-alignment: CENTER;" text="Status" />
+                        <TableColumn fx:id="tcClientePedido" prefWidth="117.0" style="-fx-alignment: CENTER;" text="Cliente" />
                         <TableColumn fx:id="tcAcoesPedido" minWidth="100.0" prefWidth="100.0" sortable="false" style="-fx-alignment: CENTER;" text="Ações" />
                      </columns>
                      <columnResizePolicy>

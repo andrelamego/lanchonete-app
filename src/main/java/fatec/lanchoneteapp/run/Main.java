@@ -46,7 +46,7 @@ public class Main extends Application {
                 return new ProdutoController(builder.getCadastroFacade());
             }
             if (type == PedidoController.class) {
-                return new PedidoController(builder.getPedidoFacade());
+                return new PedidoController(builder.getPedidoFacade(), builder.getCadastroFacade());
             }
 
             // fallback padrão
