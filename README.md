@@ -100,7 +100,7 @@ Abaixo estão os principais diagramas que representam a arquitetura e o fluxo da
 ![Diagrama de Entidade-Relacionamento](docs/diagrams/DER.png)
 
 ### 5. Diagrama de Caso de Uso
-![Diagrama de Caso de Uso](docs/diagrams/caso-de-uso.png)
+![Diagrama de Caso de Uso](docs/diagrams/casoDeUso.png)
 
 ## Pré-requisitos
 
